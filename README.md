@@ -4,19 +4,25 @@
 
 ## Установка для Codex и OMP
 
-Обе системы обнаруживают пользовательские skills в `~/.agents/skills`. Для новой установки убедитесь, что целевой каталог ещё не существует: команда `git clone` завершится ошибкой, а не перезапишет существующие файлы.
+Обе системы обнаруживают пользовательские skills в `~/.agents/skills`. Клон standalone-репозитория одновременно служит глобальной установкой. Для новой установки создайте каталог-предок, проверьте, что целевой путь отсутствует (включая symlink), затем клонируйте:
 
 ```sh
-git clone https://github.com/smallp80380/hypit-runninghub-skill.git ~/.agents/skills/hypit-runninghub
+mkdir -p "$HOME/.agents/skills"
+DEST="$HOME/.agents/skills/hypit-runninghub"
+if [ -e "$DEST" ] || [ -L "$DEST" ]; then
+  echo "Refusing to overwrite existing skill path: $DEST" >&2
+  exit 1
+fi
+git clone https://github.com/smallp80380/hypit-runninghub-skill.git "$DEST"
 ```
 
 Для обновления клона используйте fast-forward-only:
 
 ```sh
-git -C ~/.agents/skills/hypit-runninghub pull --ff-only
+git -C "$HOME/.agents/skills/hypit-runninghub" pull --ff-only
 ```
 
-Если skill уже установлен как обычная копия, не клонируйте поверх неё: обновите её вручную из checkout после проверки изменений, сохраняя существующие файлы. После установки проверьте обнаружение в свежем процессе Codex/OMP.
+После установки проверьте обнаружение в свежем процессе Codex/OMP.
 
 ## Использование
 
