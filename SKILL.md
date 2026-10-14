@@ -99,4 +99,4 @@ hypit build ./run.svrun --runtime ./profile.json --workspace . --follow --json
 
 Если пользователь просит release-работу, работай только из source checkout и сначала сверяй текущие `$PROVIDER_ROOT/package.json`, lockfile, `$PROVIDER_ROOT/DEVELOPMENT.md`, `$PROVIDER_ROOT/PUBLISHING.md` и release automation. Версии выводи из текущего source; не меняй старые tags/assets/checksums и не делай старый release Latest. Не публикуй npm, не меняй code/CI, не push/publish/bump version и не выполняй GitHub release operations без явного запроса.
 
-Canonical source: root `SKILL.md` in `https://github.com/smallp80380/hypit-runninghub-skill`. The Provider archive does not bundle this skill because its `package.json` files allowlist excludes it; install it separately for Codex and OMP under `$HOME/.agents/skills/hypit-runninghub/SKILL.md`.
+Канонический исходник — корневой `SKILL.md` в [hypit-runninghub-skill](https://github.com/smallp80380/hypit-runninghub-skill). Skill устанавливается отдельно для Codex и OMP в `$HOME/.agents/skills/hypit-runninghub/SKILL.md`; архив Provider его не содержит.
